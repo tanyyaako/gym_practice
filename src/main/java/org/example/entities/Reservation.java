@@ -6,23 +6,20 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="reservation")
-public class Reservation {
+public class Reservation extends BaseEntity {
 
-    private ReservationId id;
     private ClientEntity client;
     private GroupTraining groupTraining;
     private LocalDateTime dateTime;
 
-    @EmbeddedId
-    public ReservationId getId() {
-        return id;
+    public Reservation(ClientEntity client, LocalDateTime dateTime, GroupTraining groupTraining) {
+        this.client = client;
+        this.dateTime = dateTime;
+        this.groupTraining = groupTraining;
     }
+    protected Reservation() {}
 
-    public void setId(ReservationId id) {
-        this.id = id;
-    }
-
-    @Column
+    @Column(name = "date_time")
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -32,7 +29,7 @@ public class Reservation {
     }
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = ClientEntity.class)
-    @MapsId("clientId")
+    @JoinColumn(name = "client_id")
     public ClientEntity getClient() {
         return client;
     }
@@ -42,7 +39,7 @@ public class Reservation {
     }
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = GroupTraining.class)
-    @MapsId("groupTrainingId")
+    @JoinColumn(name = "group_training_id")
     public GroupTraining getGroupTraining() {
         return groupTraining;
     }

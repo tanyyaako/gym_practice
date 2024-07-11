@@ -4,18 +4,27 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Coach")
-public class CoachEntity {
-    private Long id;
+@Table(name = "coach")
+public class CoachEntity extends BaseEntity {
     private String name;
     private String surname;
     private String contactNumber;
     private LocalDate startDateOfProfCareer;
-    private List<GroupTraining> groupTrainingList;
+    private Set<GroupTraining> groupTrainingSet;
 
-    @Column
+    public CoachEntity(String contactNumber, Set<GroupTraining> groupTrainingSet, String name, LocalDate startDateOfProfCareer, String surname) {
+        this.contactNumber = contactNumber;
+        this.groupTrainingSet = groupTrainingSet;
+        this.name = name;
+        this.startDateOfProfCareer = startDateOfProfCareer;
+        this.surname = surname;
+    }
+    protected CoachEntity() {}
+
+    @Column(name = "contact_number")
     public String getContactNumber() {
         return contactNumber;
     }
@@ -24,18 +33,8 @@ public class CoachEntity {
         this.contactNumber = contactNumber;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -44,7 +43,7 @@ public class CoachEntity {
         this.name = name;
     }
 
-    @Column
+    @Column(name = "start_date_of_prof_career")
     public LocalDate getStartDateOfProfCareer() {
         return startDateOfProfCareer;
     }
@@ -53,7 +52,7 @@ public class CoachEntity {
         this.startDateOfProfCareer = startDateOfProfCareer;
     }
 
-    @Column
+    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -63,11 +62,11 @@ public class CoachEntity {
     }
 
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = GroupTraining.class, mappedBy = "coach")
-    public List<GroupTraining> getGroupTrainingList() {
-        return groupTrainingList;
+    public Set<GroupTraining> getGroupTrainingSet() {
+        return groupTrainingSet;
     }
 
-    public void setGroupTrainingList(List<GroupTraining> groupTrainingList) {
-        this.groupTrainingList = groupTrainingList;
+    public void setGroupTrainingSet(Set<GroupTraining> groupTrainingSet) {
+        this.groupTrainingSet = groupTrainingSet;
     }
 }

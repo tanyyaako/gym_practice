@@ -4,21 +4,32 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "GroupTraining")
-public class GroupTraining {
+@Table(name = "group_training")
+public class GroupTraining extends BaseEntity {
 
-    private Long id;
     private String name;
     private LocalDateTime dataTime;
     private String type;
     private Integer numberOfSeats;
     private CoachEntity coach;
     private GymEntity gym;
-    private List<Reservation> reservationList;
+    private Set<Reservation> reservationSet;
 
-    @Column
+    public GroupTraining(CoachEntity coach, LocalDateTime dataTime, GymEntity gym, String name, Integer numberOfSeats, Set<Reservation> reservationSet, String type) {
+        this.coach = coach;
+        this.dataTime = dataTime;
+        this.gym = gym;
+        this.name = name;
+        this.numberOfSeats = numberOfSeats;
+        this.reservationSet = reservationSet;
+        this.type = type;
+    }
+    protected GroupTraining() {}
+
+    @Column(name = "data_time")
     public LocalDateTime getDataTime() {
         return dataTime;
     }
@@ -27,19 +38,9 @@ public class GroupTraining {
         this.dataTime = dataTime;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = CoachEntity.class)
-    @JoinColumn
+    @JoinColumn(name = "coach_id")
     public CoachEntity getCoach() {
         return coach;
     }
@@ -49,7 +50,7 @@ public class GroupTraining {
     }
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = GymEntity.class)
-    @JoinColumn
+    @JoinColumn(name = "gym_id")
     public GymEntity getGym() {
         return gym;
     }
@@ -58,7 +59,7 @@ public class GroupTraining {
         this.gym = gym;
     }
 
-    @Column
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -67,7 +68,7 @@ public class GroupTraining {
         this.name = name;
     }
 
-    @Column
+    @Column(name = "number_of_seats")
     public Integer getNumberOfSeats() {
         return numberOfSeats;
     }
@@ -76,7 +77,7 @@ public class GroupTraining {
         this.numberOfSeats = numberOfSeats;
     }
 
-    @Column
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -86,11 +87,11 @@ public class GroupTraining {
     }
 
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = Reservation.class, mappedBy = "groupTraining")
-    public List<Reservation> getReservationList() {
-        return reservationList;
+    public Set<Reservation> getReservationSet() {
+        return reservationSet;
     }
 
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
+    public void setReservationSet(Set<Reservation> reservationSet) {
+        this.reservationSet = reservationSet;
     }
 }

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "MembershipCard")
+@Table(name = "membership_card")
 public class MembershipCardEntity {
 
     private Long numberCard;
@@ -18,7 +18,16 @@ public class MembershipCardEntity {
 
     private GymEntity gym;
 
-    @Column
+    public MembershipCardEntity(ClientEntity client, LocalDateTime dateOfCreation, GymEntity gym, Long numberCard, Integer type) {
+        this.client = client;
+        this.dateOfCreation = dateOfCreation;
+        this.gym = gym;
+        this.numberCard = numberCard;
+        this.type = type;
+    }
+    protected MembershipCardEntity() {}
+
+    @Column(name = "date_of_creation")
     public LocalDateTime getDateOfCreation() {
         return dateOfCreation;
     }
@@ -30,7 +39,7 @@ public class MembershipCardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "number_card")
     public Long getNumberCard() {
         return numberCard;
     }
@@ -39,7 +48,7 @@ public class MembershipCardEntity {
         this.numberCard = numberCard;
     }
 
-    @Column
+    @Column(name = "type")
     public Integer getType() {
         return type;
     }
@@ -49,7 +58,7 @@ public class MembershipCardEntity {
     }
 
     @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = ClientEntity.class)
-    @JoinColumn
+    @JoinColumn(name = "client_id")
     public ClientEntity getClient() {
         return client;
     }
@@ -59,7 +68,7 @@ public class MembershipCardEntity {
     }
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = GymEntity.class)
-    @JoinColumn
+    @JoinColumn(name = "gym_id")
     public GymEntity getGym() {
         return gym;
     }

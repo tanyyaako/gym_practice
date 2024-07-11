@@ -2,11 +2,11 @@ package org.example.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Client")
-public class ClientEntity {
-    private Long id;
+@Table(name = "client")
+public class ClientEntity extends BaseEntity {
 
     private String name;
 
@@ -18,9 +18,20 @@ public class ClientEntity {
 
     private MembershipCardEntity membershipCard;
 
-    private List<Reservation> reservationList;
+    private Set<Reservation> reservationSet;
 
-    @Column
+    public ClientEntity(String contactNumber, String mail, MembershipCardEntity membershipCard, String name, Set<Reservation> reservationSet, String surname) {
+        this.contactNumber = contactNumber;
+        this.mail = mail;
+        this.membershipCard = membershipCard;
+        this.name = name;
+        this.reservationSet = reservationSet;
+        this.surname = surname;
+    }
+
+    protected ClientEntity() {}
+
+    @Column(name = "contact_number")
     public String getContactNumber() {
         return contactNumber;
     }
@@ -29,18 +40,7 @@ public class ClientEntity {
         this.contactNumber = contactNumber;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column
+    @Column(name = "mail")
     public String getMail() {
         return mail;
     }
@@ -49,7 +49,7 @@ public class ClientEntity {
         this.mail = mail;
     }
 
-    @Column
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -58,7 +58,7 @@ public class ClientEntity {
         this.name = name;
     }
 
-    @Column
+    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -77,12 +77,12 @@ public class ClientEntity {
     }
 
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = Reservation.class, mappedBy = "client")
-    public List<Reservation> getReservationList() {
-        return reservationList;
+    public Set<Reservation> getReservationSet() {
+        return reservationSet;
     }
 
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
+    public void setReservationList(Set<Reservation> reservationSet) {
+        this.reservationSet = reservationSet;
     }
 }
 

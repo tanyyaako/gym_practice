@@ -9,10 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 
-public interface ReservationRepository extends JpaRepository<Reservation,Long> {
-    @Query("select COUNT(r.client) from Reservation r " +
-            "where r.groupTraining =: groupTraining ")
-    Integer countByGroupTraining(
-            @Param(value = "groupTraining") GroupTraining groupTraining);
+public interface ReservationRepository extends GeneralRepository<Reservation,Long> {
 
 }

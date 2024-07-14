@@ -1,58 +1,52 @@
-package org.example.entities;
-import jakarta.persistence.*;
+package org.example.DTOs;
 
-import java.util.List;
+import org.example.entities.BaseEntity;
+import org.example.entities.MembershipCardEntity;
+import org.example.entities.Reservation;
+
 import java.util.Set;
 
-@Entity
-@Table(name = "client")
-public class ClientEntity extends BaseEntity {
+public class ClientDTO {
 
+    private Long id;
     private String name;
 
     private String surname;
 
     private String mail;
-    private String gender;
 
     private String contactNumber;
+    private String gender;
 
     private MembershipCardEntity membershipCard;
 
     private String weight;
     private String height;
-    private Long fatPercentage;
+    private String fatPercentage;
+    private String musclePercentage;
     private Integer yearOfBirth;
 
     private Set<Reservation> reservationSet;
 
-    public ClientEntity(String contactNumber, Long fatPercentage, String gender, String height, String mail, MembershipCardEntity membershipCard, String name, Set<Reservation> reservationSet, String surname, String weight, Integer yearOfBirth) {
+    public ClientDTO(String contactNumber, String fatPercentage,Integer yearOfBirth,String gender, String height, Long id, String mail, MembershipCardEntity membershipCard, String musclePercentage, String name, Set<Reservation> reservationSet, String surname, String weight) {
         this.contactNumber = contactNumber;
         this.fatPercentage = fatPercentage;
-        this.gender = gender;
         this.height = height;
+        this.id = id;
         this.mail = mail;
         this.membershipCard = membershipCard;
+        this.musclePercentage = musclePercentage;
         this.name = name;
         this.reservationSet = reservationSet;
         this.surname = surname;
         this.weight = weight;
-        this.yearOfBirth = yearOfBirth;
+        this.gender=gender;
+        this.yearOfBirth=yearOfBirth;
     }
 
-    protected ClientEntity() {}
-
-    @Column(name = "fat_percentage")
-    public Long getFatPercentage() {
-        return fatPercentage;
+    private ClientDTO() {
     }
 
-
-    public void setFatPercentage(Long fatPercentage) {
-        this.fatPercentage = fatPercentage;
-    }
-
-    @Column(name = "year_of_birth")
     public Integer getYearOfBirth() {
         return yearOfBirth;
     }
@@ -60,8 +54,6 @@ public class ClientEntity extends BaseEntity {
     public void setYearOfBirth(Integer yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
-
-    @Column(name = "gender")
     public String getGender() {
         return gender;
     }
@@ -70,7 +62,22 @@ public class ClientEntity extends BaseEntity {
         this.gender = gender;
     }
 
-    @Column(name = "height")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFatPercentage() {
+        return fatPercentage;
+    }
+
+    public void setFatPercentage(String fatPercentage) {
+        this.fatPercentage = fatPercentage;
+    }
+
     public String getHeight() {
         return height;
     }
@@ -79,9 +86,14 @@ public class ClientEntity extends BaseEntity {
         this.height = height;
     }
 
+    public String getMusclePercentage() {
+        return musclePercentage;
+    }
+    public void setMusclePercentage(String musclePercentage) {
+        this.musclePercentage = musclePercentage;
+    }
 
 
-    @Column(name = "weight")
     public String getWeight() {
         return weight;
     }
@@ -90,7 +102,6 @@ public class ClientEntity extends BaseEntity {
         this.weight = weight;
     }
 
-    @Column(name = "contact_number")
     public String getContactNumber() {
         return contactNumber;
     }
@@ -99,7 +110,6 @@ public class ClientEntity extends BaseEntity {
         this.contactNumber = contactNumber;
     }
 
-    @Column(name = "mail")
     public String getMail() {
         return mail;
     }
@@ -108,7 +118,6 @@ public class ClientEntity extends BaseEntity {
         this.mail = mail;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -117,7 +126,6 @@ public class ClientEntity extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -126,7 +134,6 @@ public class ClientEntity extends BaseEntity {
         this.surname = surname;
     }
 
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = MembershipCardEntity.class, mappedBy = "client")
     public MembershipCardEntity getMembershipCard() {
         return membershipCard;
     }
@@ -135,7 +142,6 @@ public class ClientEntity extends BaseEntity {
         this.membershipCard = membershipCard;
     }
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = Reservation.class, mappedBy = "client")
     public Set<Reservation> getReservationSet() {
         return reservationSet;
     }
@@ -143,6 +149,5 @@ public class ClientEntity extends BaseEntity {
     public void setReservationSet(Set<Reservation> reservationSet) {
         this.reservationSet = reservationSet;
     }
+
 }
-
-

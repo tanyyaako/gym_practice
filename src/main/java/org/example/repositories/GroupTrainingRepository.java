@@ -9,12 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface GroupTrainingRepository extends JpaRepository<GroupTraining, Long> {
-    @Query(value = "select gr from GroupTraining gr " +
-            "where gr.type =: type ")
-    List<GroupTraining> findByType(@Param(value = "type")
-                                   String type);
-
-
-
+public interface GroupTrainingRepository extends GeneralRepository<GroupTraining,Long> {
+    @Query("SELECT g FROM GroupTraining g WHERE g.type IN :collection")
+    List<GroupTraining> findByFieldInCollection(@Param("collection") List<String> collection);
 }

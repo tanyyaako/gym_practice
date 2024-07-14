@@ -17,7 +17,7 @@ public class Reservation extends BaseEntity {
         this.dateTime = dateTime;
         this.groupTraining = groupTraining;
     }
-    protected Reservation() {}
+    public Reservation() {}
 
     @Column(name = "date_time")
     public LocalDateTime getDateTime() {

@@ -12,12 +12,5 @@ import java.util.List;
 
 public interface MembershipCardRepository extends GeneralRepository<MembershipCardEntity,Long> {
 
-    @Modifying
-    @Query(value = " update MembershipCardEntity as mc " +
-            " set mc.gym =: gymEntity " +
-            " where mc.type = 1" )
-    void updateByGymEntity(@Param(value = "gymEntity")
-                           GymEntity gymEntity);
-
 
 }

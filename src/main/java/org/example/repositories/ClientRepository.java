@@ -15,6 +15,5 @@ public interface ClientRepository extends GeneralRepository<ClientEntity,Long> {
             "where c.id=:id ")
     MembershipCardEntity findCardById(@Param("id") Long id);
 
-    ClientEntity findById(Long id);
 
 }

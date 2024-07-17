@@ -12,29 +12,18 @@ public class GroupTrainingDTO {
     private LocalDateTime dataTime;
     private String type;
     private Integer numberOfSeats;
-    private CoachEntity coach;
-    private GymEntity gym;
-    private Set<Reservation> reservationSet;
+    private String gymAddress;
+    private String gymContactNumber;
 
 
-    public GroupTrainingDTO(CoachEntity coach, LocalDateTime dataTime, GymEntity gym, String name, Integer numberOfSeats, Set<Reservation> reservationSet, String type) {
-        this.coach = coach;
+    public GroupTrainingDTO(LocalDateTime dataTime, String gymAddress, String gymContactNumber, String name, Integer numberOfSeats, String type) {
         this.dataTime = dataTime;
-        this.gym = gym;
+        this.gymAddress = gymAddress;
         this.name = name;
         this.numberOfSeats = numberOfSeats;
-        this.reservationSet = reservationSet;
         this.type = type;
     }
     public GroupTrainingDTO() {}
-
-    public CoachEntity getCoach() {
-        return coach;
-    }
-
-    public void setCoach(CoachEntity coach) {
-        this.coach = coach;
-    }
 
     public LocalDateTime getDataTime() {
         return dataTime;
@@ -44,12 +33,20 @@ public class GroupTrainingDTO {
         this.dataTime = dataTime;
     }
 
-    public GymEntity getGym() {
-        return gym;
+    public String getGymAddress() {
+        return gymAddress;
     }
 
-    public void setGym(GymEntity gym) {
-        this.gym = gym;
+    public void setGymAddress(String gymAddress) {
+        this.gymAddress = gymAddress;
+    }
+
+    public String getGymContactNumber() {
+        return gymContactNumber;
+    }
+
+    public void setGymContactNumber(String gymContactNumber) {
+        this.gymContactNumber = gymContactNumber;
     }
 
     public String getName() {
@@ -68,13 +65,6 @@ public class GroupTrainingDTO {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public Set<Reservation> getReservationSet() {
-        return reservationSet;
-    }
-
-    public void setReservationSet(Set<Reservation> reservationSet) {
-        this.reservationSet = reservationSet;
-    }
 
     public String getType() {
         return type;

@@ -12,11 +12,9 @@ public class GymEntity extends BaseEntity {
     private String address;
     private String contactNumber;
     private Set<MembershipCardEntity> membershipCardEntitySet;
-    private Set<AdminEntity> adminEntitySet;
 
-    public GymEntity(String address, Set<AdminEntity> adminEntitySet, String contactNumber, Set<MembershipCardEntity> membershipCardEntitySet) {
+    public GymEntity(String address,String contactNumber, Set<MembershipCardEntity> membershipCardEntitySet) {
         this.address = address;
-        this.adminEntitySet = adminEntitySet;
         this.contactNumber = contactNumber;
         this.membershipCardEntitySet = membershipCardEntitySet;
     }
@@ -50,12 +48,4 @@ public class GymEntity extends BaseEntity {
         this.membershipCardEntitySet = membershipCardEntitySet;
     }
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, targetEntity = AdminEntity.class, mappedBy = "gym")
-    public Set<AdminEntity> getAdminEntitySet() {
-        return adminEntitySet;
-    }
-
-    public void setAdminEntitySet(Set<AdminEntity> adminEntitySet) {
-        this.adminEntitySet = adminEntitySet;
-    }
 }

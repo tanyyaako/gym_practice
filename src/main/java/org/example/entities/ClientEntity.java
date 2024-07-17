@@ -24,6 +24,7 @@ public class ClientEntity extends BaseEntity {
     private Long fatPercentage;
     private Integer yearOfBirth;
 
+
     private Set<Reservation> reservationSet;
 
     public ClientEntity(String contactNumber, Long fatPercentage, String gender, String height, String mail, MembershipCardEntity membershipCard, String name, Set<Reservation> reservationSet, String surname, String weight, Integer yearOfBirth) {
@@ -143,6 +144,8 @@ public class ClientEntity extends BaseEntity {
     public void setReservationSet(Set<Reservation> reservationSet) {
         this.reservationSet = reservationSet;
     }
+
+
 }
 
 

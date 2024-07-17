@@ -4,13 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f57b8f9a-15f9-4ac6-a569-8ebdfc4ec0b3" name="Changes" comment="2 scenarios and new repositories">
+    <list default="true" id="f57b8f9a-15f9-4ac6-a569-8ebdfc4ec0b3" name="Changes" comment="scenarios complited">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Config/ModelMapperConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Controllers/GroupTrainingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Controllers/MembershipCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Controllers/ReservationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/ReservationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Exceptions/EntityNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Exceptions/ExceptionAdvice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DTOs/ClientDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/ClientDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DTOs/GroupTrainingDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/GroupTrainingDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DTOs/GymDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/GymDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DTOs/MembershipCardDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DTOs/MembershipCardDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/AdminEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/ClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/ClientEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/GymEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/GymEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/MembershipCardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/MembershipCardEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/GeneralRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/GeneralRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/GymRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/GymRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/repositories/MembershipCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/repositories/MembershipCardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/ClientService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/ClientServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/GroupTrainingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/GroupTrainingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/GroupTrainingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/GroupTrainingImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/MembershipCardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/MembershipCardImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/ReservationImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/Impl/ReservationImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/MembershipCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/MembershipCardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/services/ReservationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +129,11 @@
       <workItem from="1720861701482" duration="5444000" />
       <workItem from="1720948425582" duration="5382000" />
       <workItem from="1720956091576" duration="4968000" />
-      <workItem from="1720966480407" duration="4216000" />
+      <workItem from="1720966480407" duration="4552000" />
+      <workItem from="1721038852547" duration="3953000" />
+      <workItem from="1721045325035" duration="4548000" />
+      <workItem from="1721125215552" duration="16904000" />
+      <workItem from="1721232715024" duration="3159000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -142,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720969125466</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="scenarios complited">
+      <option name="closed" value="true" />
+      <created>1720970987949</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720970987949</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +197,7 @@
     <MESSAGE value="update2" />
     <MESSAGE value="4 requests in repositories" />
     <MESSAGE value="2 scenarios and new repositories" />
-    <option name="LAST_COMMIT_MESSAGE" value="2 scenarios and new repositories" />
+    <MESSAGE value="scenarios complited" />
+    <option name="LAST_COMMIT_MESSAGE" value="scenarios complited" />
   </component>
 </project>

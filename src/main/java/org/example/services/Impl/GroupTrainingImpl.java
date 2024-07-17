@@ -1,33 +1,41 @@
 package org.example.services.Impl;
 
 import org.example.DTOs.ClientDTO;
+import org.example.DTOs.GroupTrainingDTO;
+import org.example.Exceptions.EntityNotFoundException;
 import org.example.entities.ClientEntity;
 import org.example.entities.GroupTraining;
 import org.example.repositories.ClientRepository;
 import org.example.repositories.GroupTrainingRepository;
 import org.example.services.GroupTrainingService;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class GroupTrainingImpl implements GroupTrainingService {
 
     private final ClientRepository clientRepository;
     private final GroupTrainingRepository groupTrainingRepository;
+    private final ModelMapper modelMapper;
 
-    public GroupTrainingImpl(ClientRepository clientRepository, GroupTrainingRepository groupTrainingRepository) {
+    public GroupTrainingImpl(ClientRepository clientRepository, GroupTrainingRepository groupTrainingRepository, ModelMapper modelMapper) {
         this.clientRepository = clientRepository;
         this.groupTrainingRepository = groupTrainingRepository;
+        this.modelMapper = modelMapper;
     }
 
-    List<GroupTraining> recommendedTraining(ClientDTO clientDTO){
-        ClientEntity clientEntity = clientRepository.findById(clientDTO.getId());
-        Long fatPercentage=clientEntity.getFatPercentage();
-        String gender=clientEntity.getGender();
-        Integer yearBirth=clientEntity.getYearOfBirth();
+    @Override
+    public List<GroupTrainingDTO> recommendedTraining(Long id) {
+        ClientEntity clientEntity = clientRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Client not found"));
+        Long fatPercentage = clientEntity.getFatPercentage();
+        String gender = clientEntity.getGender();
+        Integer yearBirth = clientEntity.getYearOfBirth();
         Integer age= Year.now().getValue()-yearBirth;
-        List<String> trainings= new ArrayList<>();
+        List<String> trainings = new ArrayList<>();
         if(age<=30){
             if(gender.equals("М")){
                 if(fatPercentage>=4 && fatPercentage<20) {
@@ -76,7 +84,11 @@ public class GroupTrainingImpl implements GroupTrainingService {
                 }
             }
         }
-        List<GroupTraining> groupTraining=groupTrainingRepository.findByFieldInCollection(trainings);
-        return groupTraining;
+        List<GroupTraining> groupTraining = groupTrainingRepository.findByFieldInCollection(trainings);
+        List<GroupTrainingDTO> groupTrainingDTOs = groupTraining.stream()
+                .map(groupTrainings -> modelMapper.map(groupTrainings, GroupTrainingDTO.class))
+                .toList();
+        return groupTrainingDTOs;
+
     }
 }

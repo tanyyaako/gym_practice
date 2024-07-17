@@ -17,14 +17,17 @@ public class MembershipCardEntity {
     private ClientEntity client;
 
     private GymEntity gym;
+    private Integer check;
 
-    public MembershipCardEntity(ClientEntity client, LocalDateTime dateOfCreation, GymEntity gym, Long numberCard, Integer type) {
+    public MembershipCardEntity(Integer check, ClientEntity client, LocalDateTime dateOfCreation, GymEntity gym, Long numberCard, Integer type) {
+        this.check = check;
         this.client = client;
         this.dateOfCreation = dateOfCreation;
         this.gym = gym;
         this.numberCard = numberCard;
         this.type = type;
     }
+
     protected MembershipCardEntity() {}
 
     @Column(name = "date_of_creation")
@@ -75,5 +78,14 @@ public class MembershipCardEntity {
 
     public void setGym(GymEntity gym) {
         this.gym = gym;
+    }
+
+    @Column(name = "check_client")
+    public Integer getCheck() {
+        return check;
+    }
+
+    public void setCheck(Integer check) {
+        this.check = check;
     }
 }

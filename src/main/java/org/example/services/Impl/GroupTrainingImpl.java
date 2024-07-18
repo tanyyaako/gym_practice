@@ -1,6 +1,7 @@
 package org.example.services.Impl;
 
 import org.example.DTOs.GroupTrainingDTO;
+import org.example.Exceptions.EntityNotFoundExcep;
 import org.example.entities.ClientEntity;
 import org.example.entities.GroupTraining;
 import org.example.repositories.ClientRepository;
@@ -30,7 +31,7 @@ public class GroupTrainingImpl implements GroupTrainingService {
 
     @Override
     public List<GroupTrainingDTO> recommendedTraining(Long id) {
-        ClientEntity clientEntity = clientRepository.findById(id);
+        ClientEntity clientEntity = clientRepository.findById(id).orElseThrow(()-> new EntityNotFoundExcep("Client not found"));
         Long fatPercentage = clientEntity.getFatPercentage();
         String gender = clientEntity.getGender();
         Integer yearBirth = clientEntity.getYearOfBirth();

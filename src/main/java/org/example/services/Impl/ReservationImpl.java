@@ -1,6 +1,7 @@
 package org.example.services.Impl;
 
 import org.example.DTOs.ReservationDTO;
+import org.example.Exceptions.EntityNotFoundExcep;
 import org.example.entities.ClientEntity;
 import org.example.entities.GroupTraining;
 import org.example.entities.Reservation;
@@ -30,8 +31,8 @@ public class ReservationImpl implements ReservationService {
 
     @Override
     public ReservationDTO reservation(Long clientId, Long groupTrainingId) {
-        ClientEntity client = clientRepository.findById(clientId);
-        GroupTraining group = groupTrainingRepository.findById(groupTrainingId);
+        ClientEntity client = clientRepository.findById(clientId).orElseThrow(()-> new EntityNotFoundExcep("Client not found"));
+        GroupTraining group = groupTrainingRepository.findById(groupTrainingId).orElseThrow(()-> new EntityNotFoundExcep("Group training not found"));
         Reservation reservation=new Reservation();
         if(group.getNumberOfSeats()-group.getReservationSet().stream().count()>=1){
             reservation.setClient(client);

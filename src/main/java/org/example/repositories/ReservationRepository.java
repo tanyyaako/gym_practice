@@ -1,12 +1,14 @@
 package org.example.repositories;
 
-import org.example.entities.MembershipCardEntity;
+import org.example.entities.GroupTraining;
+import org.example.entities.GymEntity;
 import org.example.entities.Reservation;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
 
-public interface ReservationRepository  {
-    Reservation findById(Long id);
-    void save(Reservation reservation);
+public interface ReservationRepository extends GeneralRepository<Reservation,Long> {
 
 }

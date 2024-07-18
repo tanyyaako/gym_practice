@@ -1,15 +1,15 @@
 package org.example.repositories;
 
+import org.example.entities.ClientEntity;
 import org.example.entities.GroupTraining;
-import org.example.entities.GymEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
-public interface GroupTrainingRepository extends GeneralRepository<GroupTraining,Long> {
-    @Query("SELECT g FROM GroupTraining g WHERE g.type IN :collection")
-    List<GroupTraining> findByFieldInCollection(@Param("collection") List<String> collection);
+public interface GroupTrainingRepository  {
+    List<GroupTraining> findByFieldInCollection(List<String> collection);
+    GroupTraining findById(Long id);
+
 }

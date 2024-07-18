@@ -5,15 +5,12 @@ import org.example.entities.MembershipCardEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ClientRepository extends GeneralRepository<ClientEntity,Long> {
+import java.util.List;
+import java.util.Optional;
 
-    @Query(value="select c from ClientEntity c " +
-            "where c.contactNumber=:contactNumber ")
-    ClientEntity findByNumber(@Param("contactNumber") String contactNumber);
+public interface ClientRepository {
 
-    @Query(value="select c.membershipCard from ClientEntity c " +
-            "where c.id=:id ")
-    MembershipCardEntity findCardById(@Param("id") Long id);
-
-
+    ClientEntity findByNumber(String contactNumber);
+    MembershipCardEntity findCardById(Long id);
+    ClientEntity findById(Long id);
 }

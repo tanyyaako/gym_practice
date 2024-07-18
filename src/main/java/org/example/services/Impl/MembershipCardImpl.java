@@ -1,10 +1,7 @@
 package org.example.services.Impl;
 
 import org.example.DTOs.ClientDTO;
-import org.example.DTOs.GroupTrainingDTO;
-import org.example.DTOs.GymDTO;
 import org.example.DTOs.MembershipCardDTO;
-import org.example.Exceptions.EntityNotFoundException;
 import org.example.entities.ClientEntity;
 import org.example.entities.GymEntity;
 import org.example.entities.MembershipCardEntity;
@@ -14,8 +11,6 @@ import org.example.repositories.MembershipCardRepository;
 import org.example.services.MembershipCardService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MembershipCardImpl implements MembershipCardService {
@@ -42,11 +37,12 @@ public class MembershipCardImpl implements MembershipCardService {
     }
     @Override
     public String changeGym(MembershipCardDTO membershipCardDTO){
-        MembershipCardEntity membershipCardEntity=membershipCardRepository.findByNumberCard(membershipCardDTO.getNumberCard()).orElseThrow(()-> new EntityNotFoundException("Membership card not found"));
-        Integer check= membershipCardDTO.getCheck();
+        MembershipCardEntity membershipCardEntity=membershipCardRepository.findByNumberCard(membershipCardDTO.getNumberCard());
+        Integer check= membershipCardEntity.getCheck();
         if(check-1000>=0){
-            GymEntity gymEntity=gymRepository.findById(membershipCardDTO.getGymId()).orElseThrow(()-> new EntityNotFoundException("Gym not found"));
+            GymEntity gymEntity=gymRepository.findById(membershipCardDTO.getGymId());
             membershipCardEntity.setGym(gymEntity);
+            membershipCardEntity.setCheck(check-1000);
             membershipCardRepository.save(membershipCardEntity);
             return "Списано 1000 рублей";
         }

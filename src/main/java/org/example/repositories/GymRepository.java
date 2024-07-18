@@ -1,7 +1,11 @@
 package org.example.repositories;
 
+import org.example.entities.GroupTraining;
 import org.example.entities.GymEntity;
 
-public interface GymRepository extends GeneralRepository<GymEntity,Long>{
+import java.util.Optional;
+
+public interface GymRepository  {
+    GymEntity findById(Long id);
 
 }

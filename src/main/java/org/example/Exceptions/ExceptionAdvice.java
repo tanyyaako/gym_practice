@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionAdvice {
 
     @ResponseBody
-    @ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler(EntityNotFoundExcep.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String clientNotFoundExceptionHandler(EntityNotFoundException ex) {
+    String clientNotFoundExceptionHandler(EntityNotFoundExcep ex) {
         return ex.getMessage();
     }
 }

@@ -1,14 +1,13 @@
 package org.example.services.Impl;
 
-import org.example.DTOs.ClientDTO;
 import org.example.DTOs.GroupTrainingDTO;
-import org.example.Exceptions.EntityNotFoundException;
 import org.example.entities.ClientEntity;
 import org.example.entities.GroupTraining;
 import org.example.repositories.ClientRepository;
 import org.example.repositories.GroupTrainingRepository;
 import org.example.services.GroupTrainingService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Year;
@@ -22,6 +21,7 @@ public class GroupTrainingImpl implements GroupTrainingService {
     private final GroupTrainingRepository groupTrainingRepository;
     private final ModelMapper modelMapper;
 
+    @Autowired
     public GroupTrainingImpl(ClientRepository clientRepository, GroupTrainingRepository groupTrainingRepository, ModelMapper modelMapper) {
         this.clientRepository = clientRepository;
         this.groupTrainingRepository = groupTrainingRepository;
@@ -30,7 +30,7 @@ public class GroupTrainingImpl implements GroupTrainingService {
 
     @Override
     public List<GroupTrainingDTO> recommendedTraining(Long id) {
-        ClientEntity clientEntity = clientRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Client not found"));
+        ClientEntity clientEntity = clientRepository.findById(id);
         Long fatPercentage = clientEntity.getFatPercentage();
         String gender = clientEntity.getGender();
         Integer yearBirth = clientEntity.getYearOfBirth();
